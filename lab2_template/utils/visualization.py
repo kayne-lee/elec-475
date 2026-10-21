@@ -69,3 +69,47 @@ def plot_ablation_summary(
     plt.savefig(save_path, dpi=200)
     plt.close()
     print(f"Master ablation summary plot saved to: {save_path}")
+
+def parse_training_log(log_path: str) -> Dict[str, List[float]]:
+    """Recovers per-epoch history from the epoch table printed by train.py."""
+    history = {"train_losses": [], "train_accs": [], "val_losses": [], "val_accs": [], "val_f1s": [], "epoch_times": []}
+    with open(log_path) as f:
+        for line in f:
+            cols = [c.strip() for c in line.split("|")]
+            if len(cols) == 8 and cols[0].isdigit():
+                history["train_losses"].append(float(cols[1]))
+                history["train_accs"].append(float(cols[2]))
+                history["val_losses"].append(float(cols[3]))
+                history["val_accs"].append(float(cols[4]))
+                history["val_f1s"].append(float(cols[5]))
+                history["epoch_times"].append(float(cols[6]))
+    return history
+
+# Master ablation ladder (CIFAR-10): display label -> training log written by commands.txt
+ABLATION_LOGS = {
+    "1. Base LeNet-5": "logs/lenet.log",
+    "2. Modernized LeNet": "logs/lenet_modern.log",
+    "3. AlexNet (No Norm)": "logs/alexnet_none.log",
+    "4. AlexNet + LRN": "logs/alexnet_lrn.log",
+    "5. AlexNet + BatchNorm": "logs/alexnet_bn.log",
+    "6. AlexNet + BN + Aug": "logs/alexnet_with_aug.log",
+    "7. PyTorch Zoo AlexNet": "logs/zoo_alexnet.log",
+}
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="ELEC 475 Lab 2 visualization utilities")
+    parser.add_argument("--plot-ablation", action="store_true", help="Plot validation accuracy of every ablation run")
+    parser.add_argument("--save-path", type=str, default="./plots/ablation_summary.png")
+    args = parser.parse_args()
+
+    if args.plot_ablation:
+        results = {}
+        for label, path in ABLATION_LOGS.items():
+            if os.path.exists(path):
+                results[label] = parse_training_log(path)
+            else:
+                print(f"Skipping '{label}': {path} not found")
+        plot_ablation_summary(results, save_path=args.save_path)
+    else:
+        parser.print_help()

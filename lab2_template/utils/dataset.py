@@ -6,7 +6,8 @@ import os
 import urllib.request
 import zipfile
 import torch
-from torch.utils.data import DataLoader
+from PIL import Image
+from torch.utils.data import DataLoader, Dataset
 from torchvision.datasets import CIFAR10, ImageFolder
 from .transforms import get_train_transforms, get_test_transforms
 
@@ -36,6 +37,30 @@ def download_and_extract_tiny_imagenet(data_dir: str = "./data"):
     print("Extraction complete.")
     return target_dir
 
+class TinyImageNetVal(Dataset):
+    """
+    Official Tiny ImageNet-200 validation split (10,000 images, 50 per class).
+    Images live flat in val/images/ with labels in val/val_annotations.txt,
+    so ImageFolder cannot read them directly.
+    """
+    def __init__(self, val_dir: str, class_to_idx: dict, transform=None):
+        self.transform = transform
+        self.samples = []
+        with open(os.path.join(val_dir, "val_annotations.txt")) as f:
+            for line in f:
+                fname, wnid = line.rstrip("\n").split("\t")[:2]
+                self.samples.append((os.path.join(val_dir, "images", fname), class_to_idx[wnid]))
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        path, target = self.samples[idx]
+        img = Image.open(path).convert("RGB")
+        if self.transform is not None:
+            img = self.transform(img)
+        return img, target
+
 def get_dataloaders(
     dataset: str = "cifar10",
     data_dir: str = "./data",
@@ -64,7 +89,8 @@ def get_dataloaders(
         val_tf   = get_test_transforms("tiny_imagenet", target_size=target_size)
 
         train_set = ImageFolder(root=train_dir, transform=train_tf)
-        val_set   = ImageFolder(root=train_dir, transform=val_tf)
+        # Use the held-out official val split (not the training images) for validation
+        val_set   = TinyImageNetVal(os.path.join(tiny_dir, "val"), train_set.class_to_idx, transform=val_tf)
         num_classes = 200
         classes = train_set.classes
 

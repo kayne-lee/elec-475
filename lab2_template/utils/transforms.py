@@ -33,7 +33,11 @@ def get_train_transforms(dataset: str = "cifar10", augment: bool = True, target_
         #   2. transforms.RandomHorizontalFlip(p=0.5)
         #   3. transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2)
         # ======================================================================
-        pass
+        transform_list.extend([
+            transforms.RandomCrop(target_size, padding=4, padding_mode="reflect"),
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
+        ])
 
     transform_list.extend([
         transforms.ToTensor(),

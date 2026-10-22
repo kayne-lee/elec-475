@@ -1,0 +1,43 @@
+# ELEC 475 Lab 2: exact commands used for every result in the report.
+# Run from lab2_template/ with the environment active:
+#   python -m venv venv && source venv/bin/activate
+#   pip install torch torchvision matplotlib numpy torchinfo thop tqdm opencv-python Pillow
+# All runs: Adam, lr 1e-3, batch size 128, seed 42 unless stated. Hardware: CPU.
+
+# ---- Pre-lab: EDA and environment check ----
+python utils/eda.py --dataset both
+python demo_transforms.py
+
+# ---- Base and Modernized LeNet (CIFAR-10) ----
+python train.py --model lenet --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/lenet_baseline.pth --plot-file plots/loss_lenet.png
+python train.py --model lenet_modern --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/lenet_modern.pth --plot-file plots/loss_lenet_modern.png
+
+# ---- Step 2: Normalization study (CIFAR-10, 10 epochs, no augmentation) ----
+python train.py --model alexnet --norm none --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/alexnet_none.pth --plot-file plots/loss_alexnet_none.png
+python train.py --model alexnet --norm lrn --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/alexnet_lrn.pth --plot-file plots/loss_alexnet_lrn.png
+python train.py --model alexnet --norm bn --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/alexnet_bn.pth --plot-file plots/loss_alexnet_bn.png
+
+# ---- Step 3: Data augmentation study (CIFAR-10, 15 epochs) ----
+python train.py --model alexnet --norm bn --dataset cifar10 --epochs 15 --no-augment --save-model checkpoints/alexnet_no_aug.pth --plot-file plots/loss_no_aug.png
+python train.py --model alexnet --norm bn --dataset cifar10 --epochs 15 --save-model checkpoints/alexnet_with_aug.pth --plot-file plots/loss_with_aug.png
+
+# ---- PyTorch Zoo AlexNet (CIFAR-10) ----
+python train.py --model zoo_alexnet --dataset cifar10 --epochs 10 --no-augment --save-model checkpoints/zoo_alexnet.pth --plot-file plots/loss_zoo_alexnet.png
+
+# ---- Step 4: Tiny ImageNet (10 epochs) ----
+python train.py --model alexnet --norm bn --dataset tiny_imagenet --epochs 10 --save-model checkpoints/alexnet_tiny_imagenet.pth --plot-file plots/loss_tiny_imagenet.png
+python train.py --model lenet --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_lenet.pth --plot-file plots/loss_tiny_lenet.png
+python train.py --model lenet_modern --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_lenet_modern.pth --plot-file plots/loss_tiny_lenet_modern.png
+python train.py --model alexnet --norm none --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_alexnet_none.pth --plot-file plots/loss_tiny_alexnet_none.png
+python train.py --model alexnet --norm lrn --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_alexnet_lrn.pth --plot-file plots/loss_tiny_alexnet_lrn.png
+python train.py --model alexnet --norm bn --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_alexnet_bn.pth --plot-file plots/loss_tiny_alexnet_bn.png
+python train.py --model zoo_alexnet --dataset tiny_imagenet --epochs 10 --no-augment --save-model checkpoints/tiny_zoo_alexnet.pth --plot-file plots/loss_tiny_zoo_alexnet.png
+python train.py --model zoo_alexnet --dataset tiny_imagenet --epochs 10 --no-augment --lr 1e-4 --save-model checkpoints/tiny_zoo_alexnet_lr1e-4.pth --plot-file plots/loss_tiny_zoo_alexnet_lr1e-4.png
+
+# ---- Step 5: Multi-seed (AlexNet + BN, CIFAR-10, 10 epochs, no augmentation; seed 42 is the Step 2 run) ----
+python train.py --model alexnet --norm bn --dataset cifar10 --epochs 10 --no-augment --seed 123 --save-model checkpoints/alexnet_bn_noaug_seed123.pth --plot-file plots/loss_alexnet_bn_noaug_seed123.png
+python train.py --model alexnet --norm bn --dataset cifar10 --epochs 10 --no-augment --seed 999 --save-model checkpoints/alexnet_bn_noaug_seed999.pth --plot-file plots/loss_alexnet_bn_noaug_seed999.png
+
+# ---- Step 5: Complexity benchmark and ablation plot ----
+python compare_models.py --dataset cifar10
+python -m utils.visualization --plot-ablation

@@ -38,11 +38,7 @@ def download_and_extract_tiny_imagenet(data_dir: str = "./data"):
     return target_dir
 
 class TinyImageNetVal(Dataset):
-    """
-    Official Tiny ImageNet-200 validation split (10,000 images, 50 per class).
-    Images live flat in val/images/ with labels in val/val_annotations.txt,
-    so ImageFolder cannot read them directly.
-    """
+    """Official Tiny ImageNet val split; images are flat, labels are in val_annotations.txt."""
     def __init__(self, val_dir: str, class_to_idx: dict, transform=None):
         self.transform = transform
         self.samples = []
@@ -89,7 +85,7 @@ def get_dataloaders(
         val_tf   = get_test_transforms("tiny_imagenet", target_size=target_size)
 
         train_set = ImageFolder(root=train_dir, transform=train_tf)
-        # Use the held-out official val split (not the training images) for validation
+        # Validate on the official val split, not training images
         val_set   = TinyImageNetVal(os.path.join(tiny_dir, "val"), train_set.class_to_idx, transform=val_tf)
         num_classes = 200
         classes = train_set.classes

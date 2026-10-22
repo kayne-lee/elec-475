@@ -82,33 +82,28 @@ class AlexNet64(nn.Module):
         #            -> nn.MaxPool2d(kernel_size=3, stride=2)
         # ======================================================================
         def get_deep_norm_layer(num_features: int) -> nn.Module:
-            # Stages 3-5 only use BatchNorm (original AlexNet applied LRN to stages 1-2 only)
+            # LRN only follows stages 1-2, as in the original AlexNet
             return nn.BatchNorm2d(num_features) if self.norm_type == "bn" else nn.Identity()
 
         self.features = nn.Sequential(
-            # Stage 1: (3, 64, 64) -> (64, 32, 32) -> pool -> (64, 15, 15)
             nn.Conv2d(in_channels, 64, kernel_size=5, stride=2, padding=2),
             get_norm_layer(64),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2),
 
-            # Stage 2: (64, 15, 15) -> (192, 15, 15) -> pool -> (192, 7, 7)
             nn.Conv2d(64, 192, kernel_size=5, stride=1, padding=2),
             get_norm_layer(192),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2),
 
-            # Stage 3: (192, 7, 7) -> (384, 7, 7)
             nn.Conv2d(192, 384, kernel_size=3, stride=1, padding=1),
             get_deep_norm_layer(384),
             nn.ReLU(inplace=True),
 
-            # Stage 4: (384, 7, 7) -> (384, 7, 7)
             nn.Conv2d(384, 384, kernel_size=3, stride=1, padding=1),
             get_deep_norm_layer(384),
             nn.ReLU(inplace=True),
 
-            # Stage 5: (384, 7, 7) -> (256, 7, 7) -> pool -> (256, 3, 3)
             nn.Conv2d(384, 256, kernel_size=3, stride=1, padding=1),
             get_deep_norm_layer(256),
             nn.ReLU(inplace=True),

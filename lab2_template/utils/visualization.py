@@ -86,7 +86,7 @@ def parse_training_log(log_path: str) -> Dict[str, List[float]]:
                 history["epoch_times"].append(float(cols[6]))
     return history
 
-# Master ablation ladder (CIFAR-10): display label -> training log written by commands.txt
+# CIFAR-10 training logs plotted by --plot-ablation (written by commands.txt)
 ABLATION_LOGS = {
     "1. Base LeNet-5": "logs/lenet.log",
     "2. Modernized LeNet": "logs/lenet_modern.log",

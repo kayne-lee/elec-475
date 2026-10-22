@@ -45,7 +45,8 @@ def plot_training_curves(
 
 def plot_ablation_summary(
     ablation_results: Dict[str, Dict[str, List[float]]],
-    save_path: str = "./plots/ablation_summary.png"
+    save_path: str = "./plots/ablation_summary.png",
+    title: str = "ELEC 475: Master Ablation Study (Validation Accuracy)"
 ):
     os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
     plt.figure(figsize=(10, 6))
@@ -60,7 +61,7 @@ def plot_ablation_summary(
         style = styles[idx % len(styles)]
         plt.plot(epochs, val_accs, linestyle=style, marker='o', color=color, label=model_label, linewidth=2)
 
-    plt.title("ELEC 475: Master Ablation Study (Validation Accuracy)", fontsize=13)
+    plt.title(title, fontsize=13)
     plt.xlabel("Epoch", fontsize=11)
     plt.ylabel("Validation Accuracy (%)", fontsize=11)
     plt.legend(loc='lower right', frameon=True)

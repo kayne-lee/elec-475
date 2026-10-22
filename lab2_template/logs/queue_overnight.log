@@ -1,0 +1,37 @@
+[skip] alexnet_none already finished
+[skip] alexnet_lrn already finished
+[skip] alexnet_bn already finished
+[skip] alexnet_no_aug already finished
+[23:18] start alexnet_with_aug
+Best Val Accuracy: 82.74% | Best Val Macro F1: 82.12%
+[00:04] start alexnet_tiny_imagenet
+Best Val Accuracy: 29.90% | Best Val Macro F1: 28.38%
+[01:00] start lenet
+Best Val Accuracy: 55.67% | Best Val Macro F1: 55.49%
+[01:07] start lenet_modern
+Best Val Accuracy: 66.71% | Best Val Macro F1: 66.77%
+[01:14] start zoo_alexnet
+Best Val Accuracy: 65.96% | Best Val Macro F1: 66.04%
+[01:32] start alexnet_bn_seed123
+Best Val Accuracy: 80.45% | Best Val Macro F1: 80.43%
+[02:02] start alexnet_bn_seed999
+Best Val Accuracy: 78.61% | Best Val Macro F1: 78.59%
+[02:32] start tiny_lenet
+Best Val Accuracy: 11.64% | Best Val Macro F1: 9.82%
+[02:42] start tiny_lenet_modern
+Best Val Accuracy: 20.59% | Best Val Macro F1: 18.53%
+[02:53] start tiny_zoo_alexnet
+Best Val Accuracy: 0.57% | Best Val Macro F1: 0.01%
+[03:25] start tiny_alexnet_bn
+Best Val Accuracy: 29.78% | Best Val Macro F1: 28.32%
+[04:18] start tiny_alexnet_none
+Best Val Accuracy: 17.39% | Best Val Macro F1: 14.98%
+[05:11] start tiny_alexnet_lrn
+Best Val Accuracy: 15.72% | Best Val Macro F1: 13.07%
+[06:16] start alexnet_none_noaug
+Best Val Accuracy: 74.03% | Best Val Macro F1: 74.16%
+[06:44] start alexnet_lrn_noaug
+Best Val Accuracy: 72.70% | Best Val Macro F1: 72.76%
+[07:19] start alexnet_bn_noaug
+Best Val Accuracy: 78.78% | Best Val Macro F1: 78.86%
+[07:48] queue complete

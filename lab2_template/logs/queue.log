@@ -1,0 +1,25 @@
+[skip] alexnet_none already finished
+[skip] alexnet_lrn already finished
+[skip] alexnet_bn already finished
+[skip] alexnet_no_aug already finished
+[skip] alexnet_with_aug already finished
+[skip] alexnet_tiny_imagenet already finished
+[skip] lenet already finished
+[skip] lenet_modern already finished
+[skip] zoo_alexnet already finished
+[09:29] start alexnet_bn_noaug_seed123
+Best Val Accuracy: 79.25% | Best Val Macro F1: 79.31%
+[09:59] start alexnet_bn_noaug_seed999
+Best Val Accuracy: 80.49% | Best Val Macro F1: 80.48%
+[skip] tiny_lenet already finished
+[skip] tiny_lenet_modern already finished
+[skip] tiny_zoo_alexnet already finished
+[10:28] start tiny_zoo_alexnet_lr1e-4
+Best Val Accuracy: 20.86% | Best Val Macro F1: 18.62%
+[skip] tiny_alexnet_bn already finished
+[skip] tiny_alexnet_none already finished
+[skip] tiny_alexnet_lrn already finished
+[skip] alexnet_none_noaug already finished
+[skip] alexnet_lrn_noaug already finished
+[skip] alexnet_bn_noaug already finished
+[11:00] queue complete

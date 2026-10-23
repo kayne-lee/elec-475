@@ -10,6 +10,7 @@ Academic Reference:
   He et al. (CVPR 2016), "Deep Residual Learning for Image Recognition".
   Howard et al. (arXiv 2017), "MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications".
 """
+import copy
 import time
 import functools
 from typing import Dict, Tuple, Optional, Any, Callable
@@ -87,8 +88,9 @@ class ModelProfiler:
         try:
             import thop
             dummy = torch.randn(*self.input_size, device=self.device)
-            self.model.eval()
-            macs, _ = thop.profile(self.model, inputs=(dummy,), verbose=False)
+            # Profile a copy: thop registers total_ops/total_params buffers that would pollute saved checkpoints
+            model_copy = copy.deepcopy(self.model).eval()
+            macs, _ = thop.profile(model_copy, inputs=(dummy,), verbose=False)
             return int(macs), int(2 * macs)
         except Exception:
             pass

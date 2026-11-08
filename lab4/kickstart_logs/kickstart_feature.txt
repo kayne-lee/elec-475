@@ -1,0 +1,7 @@
+Training student with kd=feature on mps for 20 iterations
+iter   5/20  loss 3.744
+iter  10/20  loss 3.057
+iter  15/20  loss 2.828
+iter  20/20  loss 2.604
+Kick-start finished: average loss 4.285 (first 5) -> 2.722 (last 5)
+Saved plots/loss_feature.png

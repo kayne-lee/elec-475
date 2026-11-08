@@ -1,0 +1,7 @@
+Training student with kd=none on mps for 20 iterations
+iter   5/20  loss 2.044
+iter  10/20  loss 1.912
+iter  15/20  loss 1.376
+iter  20/20  loss 1.587
+Kick-start finished: average loss 2.544 (first 5) -> 1.462 (last 5)
+Saved plots/loss_none.png

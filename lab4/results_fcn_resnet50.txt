@@ -1,0 +1,51 @@
+======================================================================
+ELEC 475 Lab 4 Pre-Lab: FCN-ResNet50 on PASCAL VOC 2012 (val)
+Device      : mps
+Data root   : /Users/kaynelee/repos/elec-475/lab4/data
+Resize      : shorter side -> 520 (predictions upsampled to native size)
+======================================================================
+Loaded FCN-ResNet50 (35.32M params), categories: 21
+VOC 2012 val images: 1449 (evaluating 1449)
+  [ 100/1449] running mIoU=73.84%  (4.7 img/s)
+  [ 200/1449] running mIoU=71.56%  (4.9 img/s)
+  [ 300/1449] running mIoU=70.65%  (5.1 img/s)
+  [ 400/1449] running mIoU=69.96%  (5.1 img/s)
+  [ 500/1449] running mIoU=71.06%  (5.2 img/s)
+  [ 600/1449] running mIoU=71.16%  (5.2 img/s)
+  [ 700/1449] running mIoU=70.94%  (5.2 img/s)
+  [ 800/1449] running mIoU=71.25%  (5.2 img/s)
+  [ 900/1449] running mIoU=70.97%  (5.2 img/s)
+  [1000/1449] running mIoU=70.59%  (5.3 img/s)
+  [1100/1449] running mIoU=70.17%  (5.3 img/s)
+  [1200/1449] running mIoU=70.23%  (5.3 img/s)
+  [1300/1449] running mIoU=69.73%  (5.3 img/s)
+  [1400/1449] running mIoU=69.78%  (5.3 img/s)
+  [1449/1449] running mIoU=69.62%  (5.4 img/s)
+
+Per-class IoU:
+  background    92.79%
+  aeroplane     86.29%
+  bicycle       39.45%
+  bird          74.77%
+  boat          67.48%
+  bottle        48.30%
+  bus           87.74%
+  car           69.44%
+  cat           82.58%
+  chair         39.74%
+  cow           73.60%
+  diningtable   51.55%
+  dog           72.32%
+  horse         76.17%
+  motorbike     78.58%
+  person        86.55%
+  pottedplant   53.60%
+  sheep         76.58%
+  sofa          50.31%
+  train         82.44%
+  tvmonitor     71.77%
+----------------------------------------------------------------------
+Pixel accuracy      : 93.12%
+Mean class accuracy : 78.66%
+mIoU                : 69.62%
+Elapsed             : 280.6s

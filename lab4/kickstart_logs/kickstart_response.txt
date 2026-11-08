@@ -1,0 +1,7 @@
+Training student with kd=response on mps for 20 iterations
+iter   5/20  loss 2.506
+iter  10/20  loss 2.438
+iter  15/20  loss 2.346
+iter  20/20  loss 2.146
+Kick-start finished: average loss 2.730 (first 5) -> 2.154 (last 5)
+Saved plots/loss_response.png

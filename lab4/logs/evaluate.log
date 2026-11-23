@@ -1,0 +1,19 @@
+Teacher (FCN-ResNet50): mIoU 72.8
+Student, no KD: mIoU 51.6
+Student, response KD: mIoU 51.7
+Student, feature KD: mIoU 52.6
+LiteSeg, no KD: mIoU 53.8
+LiteSeg, resp+feat KD: mIoU 55.4
+
+Model                         mIoU        Params    ms/img (mps)  ms/img (cpu)
+Teacher (FCN-ResNet50)        72.8    35,322,218            46.3          92.8
+Student, no KD                51.6     3,265,173             6.2          33.9
+Student, response KD          51.7     3,265,173             6.0          34.4
+Student, feature KD           52.6     3,265,173             6.1          33.7
+LiteSeg, no KD                53.8     1,295,181             7.2          59.1
+LiteSeg, resp+feat KD         55.4     1,295,181             7.1          58.1
+
+Saved plots/compare.png
+Saved plots/success.png (LiteSeg, resp+feat KD, val idx [1172, 1047, 786, 1396], per-image mIoU [100.0, 99.9, 99.6, 99.6])
+Saved plots/failure.png (LiteSeg, resp+feat KD, val idx [1238, 1443, 362, 1164], per-image mIoU [1.4, 2.3, 4.7, 4.9])
+Saved logs/eval_results.json

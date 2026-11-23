@@ -1,0 +1,9 @@
+# train.txt — run from lab4/ (Apple M5, MPS). Each run stops early on convergence.
+# Step 1: provided student, three KD methods, default settings
+python train.py --kd none -e 100
+python train.py --kd response -e 100
+python train.py --kd feature -e 100
+# Step 3: our LiteSegNet student, response + feature KD, with data augmentation
+python train.py --model custom --kd both --aug -e 100
+# Step 3 ablation: LiteSegNet without KD (same augmentation)
+python train.py --model custom --kd none --aug -e 100

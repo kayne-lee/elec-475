@@ -1,0 +1,28 @@
+Training student (3,265,173 params) with kd=response on mps for up to 100 epochs
+{'model': 'student', 'kd': 'response', 'data': './data', 'epochs': 100, 'batch': 16, 'lr': 0.001, 'size': 320, 'alpha': 0.5, 'beta': 0.5, 'tau': 4.0, 'gamma': 1.0, 'lr_patience': 2, 'lr_factor': 0.5, 'patience': 5, 'tol': 0.1, 'aug': False, 'workers': 2, 'iters': 0}
+epoch 1/100  loss 1.940  val mIoU 16.7  lr 1.00e-03  (86 s)
+epoch 2/100  loss 1.605  val mIoU 20.1  lr 1.00e-03  (427 s)
+epoch 3/100  loss 1.523  val mIoU 30.0  lr 1.00e-03  (506 s)
+epoch 4/100  loss 1.455  val mIoU 28.5  lr 1.00e-03  (586 s)
+epoch 5/100  loss 1.416  val mIoU 40.8  lr 1.00e-03  (665 s)
+epoch 6/100  loss 1.378  val mIoU 40.4  lr 1.00e-03  (745 s)
+epoch 7/100  loss 1.365  val mIoU 40.4  lr 1.00e-03  (824 s)
+epoch 8/100  loss 1.346  val mIoU 43.9  lr 1.00e-03  (903 s)
+epoch 9/100  loss 1.328  val mIoU 41.9  lr 1.00e-03  (983 s)
+epoch 10/100  loss 1.317  val mIoU 41.5  lr 1.00e-03  (1062 s)
+epoch 11/100  loss 1.305  val mIoU 45.9  lr 1.00e-03  (1141 s)
+epoch 12/100  loss 1.296  val mIoU 45.7  lr 1.00e-03  (1221 s)
+epoch 13/100  loss 1.299  val mIoU 38.5  lr 1.00e-03  (1300 s)
+epoch 14/100  loss 1.304  val mIoU 43.4  lr 1.00e-03  (1379 s)
+epoch 15/100  loss 1.276  val mIoU 49.0  lr 5.00e-04  (1458 s)
+epoch 16/100  loss 1.270  val mIoU 51.1  lr 5.00e-04  (1538 s)
+epoch 17/100  loss 1.264  val mIoU 51.2  lr 5.00e-04  (1620 s)
+epoch 18/100  loss 1.261  val mIoU 51.7  lr 5.00e-04  (1700 s)
+epoch 19/100  loss 1.258  val mIoU 50.7  lr 5.00e-04  (1780 s)
+epoch 20/100  loss 1.255  val mIoU 50.4  lr 5.00e-04  (1860 s)
+epoch 21/100  loss 1.254  val mIoU 51.3  lr 5.00e-04  (1942 s)
+epoch 22/100  loss 1.251  val mIoU 51.8  lr 2.50e-04  (2021 s)
+epoch 23/100  loss 1.250  val mIoU 51.7  lr 2.50e-04  (2100 s)
+Early stopping: no improvement > 0.1 for 5 epochs
+Best val mIoU 51.7 at epoch 18; 23 epochs, 2100 s total. Saved checkpoints/student_response.pth
+Saved plots/loss_response.png

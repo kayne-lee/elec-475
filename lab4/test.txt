@@ -1,0 +1,2 @@
+# test.txt — run from lab4/ after training (see train.txt)
+python evaluate.py
